@@ -1,0 +1,61 @@
+[General]
+arch=arm64
+directory=/arm64_root
+
+# same as --tidy-up option if set to true
+cleanup=true
+
+# same as --no-auth option if set to true
+# keyring packages listed in each bootstrap will
+# still be installed.
+noauth=false
+
+# extract all downloaded archives (default is true)
+unpack=true
+
+# whether to add the /suite to be explicit about where apt
+# needs to look for packages. Default is false.
+explicitsuite=false
+
+# enable MultiArch for the specified architectures
+# default is empty
+multiarch=
+
+# aptsources is a list of sections to be used
+# the /etc/apt/sources.list.d/multistrap.sources.list
+# of the target. Order is not important
+aptsources=Ubuntu Ubuntu_Updates Ubuntu_Backports Ubuntu_Security Python_Backports
+
+# the bootstrap option determines which repository
+# is used to calculate the list of Priority: required packages
+# and which packages go into the rootfs.
+# The order of sections is not important.
+bootstrap=Ubuntu
+
+[Ubuntu]
+packages=curl apt openssl ca-certificates dpkg-dev software-properties-common
+source=http://ports.ubuntu.com/ubuntu-ports/
+keyring=
+suite=xenial
+components=main restricted universe multiverse 
+
+[Ubuntu_Updates]
+packages=
+source=http://ports.ubuntu.com/ubuntu-ports/
+keyring=
+suite=xenial-updates
+components=main restricted universe multiverse
+
+[Ubuntu_Backports]
+packages=
+source=http://ports.ubuntu.com/ubuntu-ports/
+keyring=
+suite=xenial-backports
+components=main restricted universe multiverse
+
+[Ubuntu_Security]
+packages=
+source=http://ports.ubuntu.com/ubuntu-ports/
+keyring=
+suite=xenial-security
+components=main restricted universe multiverse
