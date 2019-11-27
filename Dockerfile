@@ -1,4 +1,4 @@
-FROM debian 
+FROM debian
 
 RUN apt-get -y update
 RUN apt-get -y install qemu-user-static binfmt-support multistrap wget
@@ -13,7 +13,7 @@ RUN wget -qO /arm64_root/etc/apt/trusted.gpg.d/ubuntu-archive-keyring.gpg http:/
 RUN multistrap -a arm64 -d . -f ubports_arm64.multistrap
 
 # configura all
-RUN cp /etc/resolv.conf etc/
+RUN cp /etc/resolv.conf etc/resolv.conf
 RUN cp /usr/bin/qemu-aarch64-static usr/bin/qemu-aarch64-static
 RUN chroot /arm64_root dpkg --configure -a || true
 
@@ -36,5 +36,5 @@ RUN chroot /arm64_root /tmp/get-appimagetool.sh
 RUN chroot /arm64_root pip install appimage-builder
 
 
-
+CMD cp /etc/resolv.conf etc/resolv.conf
 ENTRYPOINT "chroot" "/arm64_root" "/bin/bash"
