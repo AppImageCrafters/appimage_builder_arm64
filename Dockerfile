@@ -36,5 +36,4 @@ RUN chroot /arm64_root /tmp/get-appimagetool.sh
 RUN chroot /arm64_root pip install appimage-builder
 
 
-CMD cp /etc/resolv.conf etc/resolv.conf
-ENTRYPOINT "chroot" "/arm64_root" "/bin/bash"
+ENTRYPOINT cp /etc/resolv.conf etc/resolv.conf && chroot /arm64_root /bin/bash
